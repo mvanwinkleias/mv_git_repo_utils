@@ -5,8 +5,8 @@ AUTOMATION_GROUP ?= iasnetauto
 
 # Symbolically link things in src/bin to /usr/bin
 # 
-# symbolic_links-usr_bin = \
-#	mv-git-repo-utils_hello.sh \ 
+symbolic_links-usr_bin = \
+	git_tags_and_after.sh \ 
 # 	another_program.sh
 
 #######################
