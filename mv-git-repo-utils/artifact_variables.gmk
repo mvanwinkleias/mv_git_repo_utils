@@ -6,7 +6,8 @@ AUTOMATION_GROUP ?= iasnetauto
 # Symbolically link things in src/bin to /usr/bin
 # 
 symbolic_links-usr_bin = \
-	git_tags_and_after.sh \ 
+	git_tags_and_after.sh \
+	git_files_changed_since_last_tag.sh \
 # 	another_program.sh
 
 #######################
