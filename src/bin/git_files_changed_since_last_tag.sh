@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This shows all of the files changed since the last tag.
+
 tags=$( git tag )
 
 if [[ -z "$tags" ]]
