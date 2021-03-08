@@ -4,6 +4,15 @@ repo="$1"
 
 src_base_dir=${src_base_dir:-~/src/git}
 
+git_clone_repo_debug=0
+function git_clone_repo_debug
+{
+	if [[ "$git_clone_repo_debug" == "1" ]]
+	then
+		echo "$@"
+	fi
+}
+
 if [[ -z "$repo" ]]
 then
 	>&2 echo "Repo to clone is first argument."
@@ -16,7 +25,7 @@ group_name=''
 
 if [[ "$repo" == http* ]]
 then
-	echo "This is an http thing."
+	git_clone_repo_debug echo "This is an http thing."
 	## Remove protocol part of url  ##
 	stripped_repo="${stripped_repo#http://}"
 	stripped_repo="${stripped_repo#https://}"
@@ -27,7 +36,7 @@ then
 	group_name=$( echo "$stripped_repo" | awk -F'/' '{print $2}' )
 elif [[ "$repo" == *@*:* ]]
 then
- 	echo "This is a user@site:thing"
+ 	git_clone_repo_debug echo "This is a user@site:thing"
 	host=$( echo "$repo" | awk -F':' '{print $1}' | awk -F '@' '{print $2}' )
 	group_name=$(echo "$repo" | awk -F':' '{print $2}' | awk -F'/' '{print $1}'  )
 else
@@ -35,9 +44,9 @@ else
 	exit 1
 fi
 
-echo "Stripped repo: $stripped_repo"
-echo "Host: $host"
-echo "Group name: $group_name"
+git_clone_repo_debug echo "Stripped repo: $stripped_repo"
+git_clone_repo_debug echo "Host: $host"
+git_clone_repo_debug echo "Group name: $group_name"
 
 if [[ -z "$host" || -z "$group_name" ]]
 then
@@ -46,10 +55,14 @@ then
 fi
 
 clone_dir="$src_base_dir/$host/$group_name"
-echo "Clone dir:"
-echo "$clone_dir"
+git_clone_repo_debug echo "Clone dir:" $clone_dir
 
-mkdir -p "$clone_dir"
+if ! mkdir -p "$clone_dir"
+then
+	>&2 echo "Unable to mkdir $clone_dir"
+	exit 1
+fi
+
 cd "$clone_dir"
 
 git clone $repo
