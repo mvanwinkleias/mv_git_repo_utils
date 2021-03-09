@@ -3,8 +3,8 @@
 repo="$1"
 
 src_base_dir=${src_base_dir:-~/src/git}
+git_clone_repo_debug=${git_clone_repo_debug:-0}
 
-git_clone_repo_debug=0
 function git_clone_repo_debug
 {
 	if [[ "$git_clone_repo_debug" == "1" ]]
@@ -12,6 +12,8 @@ function git_clone_repo_debug
 		echo "$@"
 	fi
 }
+
+git_clone_repo_debug "Git clone repo debug: $git_clone_repo_debug"
 
 if [[ -z "$repo" ]]
 then
@@ -62,7 +64,10 @@ fi
 clone_dir="$src_base_dir/$host/$group_name"
 echo "Clone dir:"
 echo "$clone_dir"
-exit
+if [[ "$git_clone_repo_debug" != "0" ]]
+then
+	exit
+fi
 mkdir -p "$clone_dir"
 git_clone_repo_debug echo "Clone dir:" $clone_dir
 
