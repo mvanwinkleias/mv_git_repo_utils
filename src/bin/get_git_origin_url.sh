@@ -6,5 +6,7 @@ dir="${1:-d}"
 start_dir=`pwd`
 # echo "Dir: $dir"
 cd "$dir"
-git config --get remote.origin.url
+result=$( git config --get remote.origin.url )
+tab=$( echo -e '\t' )
+echo "${dir}${tab}${result}"
 cd "$start_dir"
