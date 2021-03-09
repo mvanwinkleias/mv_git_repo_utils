@@ -1,0 +1,4 @@
+ssh://git.ias.edu/git/example/example.git
+https://github.com/mvanwinkleias/repo_layout_demo1.git
+git@github.com:theias/ias_package_shell.git
+git@gitlab.com:theias/net/ias_network_firewall_utils.git
