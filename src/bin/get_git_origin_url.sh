@@ -16,7 +16,7 @@ then
 fi
 
 # Check for unpushed commits
-if [[ -z "$( git log --branches --not --remotes)" ]]
+if [[ ! -z "$( git log --branches --not --remotes)" ]]
 then
 	status=1
 fi
