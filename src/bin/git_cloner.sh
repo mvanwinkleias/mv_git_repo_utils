@@ -33,6 +33,14 @@ then
 	stripped_repo="${stripped_repo#https://}"
 	stripped_repo="${stripped_repo#ssh://}"
 
+
+	echo "Stripped repo: $stripped_repo"
+	# Remove user@portion if it exists
+	if [[ "$stripped_repo" == *@* ]]
+	then
+		stripped_repo=$( echo "$stripped_repo" | awk -F '@' '{print $2}' )
+	fi
+
 	# Host is everything up until the first /
 	host=$( echo "$stripped_repo" | cut -d '/' -f 1  )
 	host=$( echo "$host" | cut -f1 -d":")
@@ -51,9 +59,9 @@ else
 	exit 1
 fi
 
-git_clone_repo_debug echo "Stripped repo: $stripped_repo"
-git_clone_repo_debug echo "Host: $host"
-git_clone_repo_debug echo "Group name: $group_name"
+git_clone_repo_debug "Stripped repo: $stripped_repo"
+git_clone_repo_debug "Host: $host"
+git_clone_repo_debug "Group name: $group_name"
 
 if [[ -z "$host" || -z "$group_name" ]]
 then
