@@ -2,9 +2,23 @@
 
 verbose=0
 
-git_pull_command=( \
-	git pull \
-)
+function usage
+{
+	cat <<EndOfUsage
+NAME
+$0
+
+DESCRIPTION
+Silently runs git pull on repositories.
+
+SYNOPSIS
+	$0 [-v] [ path to repo]
+
+OPTIONS
+	-v : enable verbose
+
+EndOfUsage
+}
 
 function verbose_output
 {
@@ -14,10 +28,6 @@ function verbose_output
 	fi
 }
 
-function usage
-{
-	echo "-v : enable verbose"
-}
 while getopts "v" o; do
     case "${o}" in
         v)
