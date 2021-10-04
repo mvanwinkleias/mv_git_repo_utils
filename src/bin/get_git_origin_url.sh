@@ -21,6 +21,6 @@ then
 	status=1
 fi
 
-tab=$( echo -e '\t' )
+tab=$( printf "\t" )
 echo "${dir}${tab}${result}${tab}${status}"
 cd "$start_dir"
