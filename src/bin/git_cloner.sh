@@ -54,8 +54,7 @@ then
 	host=$( echo "$repo" | awk -F':' '{print $1}' | awk -F '@' '{print $2}' )
 	group_name=$( dirname "${repo#*:}" )
 else
-
-	>&2 "I don't recognize this repo type..."
+	>&2 echo "I don't recognize this repo type...: $repo"
 	exit 1
 fi
 
