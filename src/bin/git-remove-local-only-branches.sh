@@ -17,3 +17,5 @@ function git_get_all_remote_branches
 	| awk '{print $1}'
 }
 # grep -Ev -f <(git branch -r | awk '{print $1}') <(git branch -vv | grep origin | awk '{print $1'})
+
+git remote prune origin
