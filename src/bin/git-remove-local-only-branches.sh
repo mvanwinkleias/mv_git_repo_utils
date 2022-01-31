@@ -7,10 +7,10 @@ function remove_line_with_arrow
 
 function remove_leading_asterisk
 {
-	| sed 's/^\*//'
+	sed 's/^\*//'
 }
 
-function git_get_all_remote_bramches
+function git_get_all_remote_branches
 {
 	git branch -r \
 	| remove_line_with_arrow \
