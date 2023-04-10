@@ -86,4 +86,4 @@ fi
 
 cd "$clone_dir"
 
-git clone $repo
+git clone "$repo"
